@@ -46,8 +46,8 @@ An output file named **sortedNumbers.txt** can be found in the build folder.
 
 ## Results:
 
-Bubble Sort - 10 unsorted numbers:
+Bubble Sort - 10 unsorted numbers:\
 ![Bubble Sort - 10 Unsorted](assets/readme_bubble_10.png)
 
-Bubble Sort - 10000 unsorted numbers:
+Bubble Sort - 10000 unsorted numbers:\
 ![Bubble Sort - 10000 Unsorted](assets/readme_bubble_10000.png)
