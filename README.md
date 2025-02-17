@@ -31,6 +31,7 @@ make -j$(expr $(nproc) / 2)
 | Insertion Sort | insertion |
 | Selection Sort | selection |
 | Bubble Sort | bubble |
+| Merge Sort | merge |
 
 ### Valid input files:
 

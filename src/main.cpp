@@ -57,7 +57,7 @@ void displayHelp()
     std::cout << BOLDWHITE << "--- Help Sorting Algorithms ---\n" << RESET << std::endl;
     std::cout << "Description: \n> Algortithm that take a file filled by unsorted number and sort them using different algorithms.\n" << std::endl;
     std::cout << "Usage: \n> ./sort [algorithm_name] [file_path]\n" << std::endl;
-    std::cout << "Valid algorithm names: \n- insertion\n- selection\n- bubble\n" << std::endl;
+    std::cout << "Valid algorithm names: \n- insertion\n- selection\n- bubble\n- merge\n" << std::endl;
     std::cout << BOLDGREEN << "Output: \n> Sorted list is write in the sortedNumbers.txt file in the build directory.\n" << RESET << std::endl;
 }
 
