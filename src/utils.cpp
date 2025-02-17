@@ -29,6 +29,14 @@ std::string getUnsortedList(std::string path)
     return fileContent;
 }
 
+void writeOutputInFile(std::vector<int> sortedList)
+{
+    std::ofstream outputFile("./sortedNumbers.txt");
+    for (auto i : sortedList)
+        outputFile << i << " ";
+    outputFile << "\n";
+}
+
 void displayVector(std::vector<int> vector)
 {
     for (auto i : vector)
