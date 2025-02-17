@@ -2,16 +2,8 @@
 #include <vector>
 #include "colors.hpp"
 
-void selectionSortDetails()
-{
-    std::cout << BOLDWHITE << "Selection Sort algorithm:" << std::endl;
-    std::cout << " - Complexity: O(n²)\n" << std::endl;
-}
-
 std::vector<int> selectionSort(std::vector<int> unsortedList)
 {
-    selectionSortDetails();
-
     for (int i = 0; i < unsortedList.size(); i++) {
         int min = i;
         for (int j = i + 1; j < unsortedList.size(); j++)
@@ -22,4 +14,12 @@ std::vector<int> selectionSort(std::vector<int> unsortedList)
     }
 
     return unsortedList;
+}
+
+std::vector<int> selectionSortDetails(std::vector<int> unsortedList)
+{
+    std::cout << BOLDWHITE << "Selection Sort algorithm:" << std::endl;
+    std::cout << " - Complexity: O(n²)\n" << std::endl;
+
+    return selectionSort(unsortedList);
 }

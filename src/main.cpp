@@ -6,12 +6,14 @@
 #include "algorithms/insertionSort.cpp"
 #include "algorithms/selectionSort.cpp"
 #include "algorithms/bubbleSort.cpp"
+#include "algorithms/mergeSort.cpp"
 
 enum SortingAlgorithms {
     notDefined,
     insertionSortAlgorithm,
     selectionSortAlgorithm,
     bubbleSortAlgorithm,
+    mergeSortAlgorithm,
 };
 
 std::map<std::string, SortingAlgorithms> s_mapSortingAlgorithms;
@@ -20,6 +22,7 @@ void InitializeAlgorithms() {
     s_mapSortingAlgorithms["insertion"] = insertionSortAlgorithm;
     s_mapSortingAlgorithms["selection"] = selectionSortAlgorithm;
     s_mapSortingAlgorithms["bubble"] = bubbleSortAlgorithm;
+    s_mapSortingAlgorithms["merge"] = mergeSortAlgorithm;
 }
 
 std::vector<int> chooseAlgorithm(std::vector<int> unsortedList, std::string sortingAlgorithm)
@@ -30,13 +33,16 @@ std::vector<int> chooseAlgorithm(std::vector<int> unsortedList, std::string sort
 
     switch (s_mapSortingAlgorithms[sortingAlgorithm]) {
         case insertionSortAlgorithm:
-            sortedList = insertionSort(unsortedList);
+            sortedList = insertionSortDetails(unsortedList);
             break;
         case selectionSortAlgorithm:
-            sortedList = selectionSort(unsortedList);
+            sortedList = selectionSortDetails(unsortedList);
             break;
         case bubbleSortAlgorithm:
-            sortedList = bubbleSort(unsortedList);
+            sortedList = bubbleSortDetails(unsortedList);
+            break;
+        case mergeSortAlgorithm:
+            sortedList = mergeSortDetails(unsortedList);
             break;
         default:
             std::cout << BOLDRED << "Algorithm \"" << sortingAlgorithm << "\" does not exists" << RESET << std::endl;
