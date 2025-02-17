@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "colors.hpp"
 
 std::vector<int> stringToVector(std::string content)
 {
@@ -21,6 +22,11 @@ std::string getUnsortedList(std::string path)
 {
     std::ifstream file(path);
     std::string fileContent;
+
+    if (!file.is_open()) {
+        std::cerr << BOLDRED << "Failed to open the file " << path << "." << RESET << std::endl;
+        exit(84);
+    }
 
     while (std::getline(file, fileContent));
 
