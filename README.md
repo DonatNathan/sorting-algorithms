@@ -24,6 +24,12 @@ make -j$(expr $(nproc) / 2)
 ./sort [algorithm_name] [file_path]
 ```
 
+### Arguments:
+
+| Argument | Description |
+| :---: | :---: |
+| --graphical | Open a graphical window that show the sorting |
+
 ### Valid algorithms names:
 
 | Name | Value |
@@ -52,3 +58,6 @@ Bubble Sort - 10 unsorted numbers:\
 
 Bubble Sort - 10000 unsorted numbers:\
 ![Bubble Sort - 10000 Unsorted](assets/readme_bubble_10000.png)
+
+Graphical Example:\
+![Graphical Example](assets/readme_graphical.png)

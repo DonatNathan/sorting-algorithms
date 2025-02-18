@@ -39,7 +39,7 @@ std::vector<sf::RectangleShape> createShapeList(std::vector<int> list, int actua
     return numberList;
 }
 
-void displayAlgorithm(std::vector<int> list, std::string algorithm)
+std::vector<int> displayAlgorithm(std::vector<int> list, std::string algorithm)
 {
     int windowX = 800;
     int windowY = 600;
@@ -57,10 +57,5 @@ void displayAlgorithm(std::vector<int> list, std::string algorithm)
         sf::sleep(sf::milliseconds(500));
     };
 
-    chooseAlgorithm(list, algorithm, updateVisualization);
-
-    while (window.isOpen()) {
-        handleEvents(&window, &event);
-        // drawStuff(&window, numberList);
-    }
+    return chooseAlgorithm(list, algorithm, updateVisualization);
 }
