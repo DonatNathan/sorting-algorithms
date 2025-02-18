@@ -19,14 +19,16 @@ void drawStuff(sf::RenderWindow *window, std::vector<sf::RectangleShape> numberL
     window->display();
 }
 
-std::vector<sf::RectangleShape> createShapeList(std::vector<int> list, int actual)
+std::vector<sf::RectangleShape> createShapeList(std::vector<int> list, int actual, int windowX, int windowY)
 {
     std::vector<sf::RectangleShape> numberList;
     float pos = 0;
 
     for (auto i : list) {
-        sf::RectangleShape newRectangle(sf::Vector2f(30, i * 30));
-        sf::Vector2f rectanglePosition = {100 + pos * 35, float(500 - i * 30)};
+        float length = windowX / list.size() - 5;
+        float heigth = windowY / *std::max_element(list.begin(), list.end());
+        sf::RectangleShape newRectangle(sf::Vector2f(length, i * heigth));
+        sf::Vector2f rectanglePosition = {pos * (length + 5), float(windowY - i * heigth)};
         newRectangle.setPosition(rectanglePosition);
         if (pos == actual)
             newRectangle.setFillColor(sf::Color::Green);
@@ -39,11 +41,13 @@ std::vector<sf::RectangleShape> createShapeList(std::vector<int> list, int actua
 
 void displayAlgorithm(std::vector<int> list, std::string algorithm)
 {
-    sf::RenderWindow window(sf::VideoMode({800, 600}), "Graphical Algorithm");
+    int windowX = 800;
+    int windowY = 600;
+    sf::RenderWindow window(sf::VideoMode(windowX, windowY), "Graphical Algorithm");
     sf::Event event;
 
     auto updateVisualization = [&](std::vector<int> updatedList, int actual) {
-        std::vector<sf::RectangleShape> numberList = createShapeList(updatedList, actual);
+        std::vector<sf::RectangleShape> numberList = createShapeList(updatedList, actual, windowX, windowY);
         window.clear(sf::Color::Black);
         for (auto &rect : numberList) {
             window.draw(rect);
