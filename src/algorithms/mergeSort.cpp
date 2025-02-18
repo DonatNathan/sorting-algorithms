@@ -1,8 +1,9 @@
 #include <iostream>
 #include <vector>
 #include "colors.hpp"
+#include <bits/stdc++.h>
 
-std::vector<int> merge(std::vector<int> begin, std::vector<int> end)
+std::vector<int> merge(std::vector<int> begin, std::vector<int> end, std::function<void(std::vector<int>, int)> updateVisualization)
 {
     std::vector<int> sortedList;
 
@@ -26,10 +27,13 @@ std::vector<int> merge(std::vector<int> begin, std::vector<int> end)
         end.erase(end.begin());
     }
 
+    // TODO: Fix visualisation for merge sort
+    updateVisualization(sortedList, 0);
+
     return sortedList;
 }
 
-std::vector<int> mergeSort(std::vector<int> unsortedList)
+std::vector<int> mergeSort(std::vector<int> unsortedList, std::function<void(std::vector<int>, int)> updateVisualization)
 {
     if (unsortedList.size() == 1)
         return unsortedList;
@@ -37,16 +41,16 @@ std::vector<int> mergeSort(std::vector<int> unsortedList)
     std::vector<int> begin(unsortedList.begin(), unsortedList.begin() + unsortedList.size() / 2);
     std::vector<int> end(unsortedList.begin() + unsortedList.size() / 2, unsortedList.end());
 
-    begin = mergeSort(begin);
-    end = mergeSort(end);
+    begin = mergeSort(begin, updateVisualization);
+    end = mergeSort(end, updateVisualization);
 
-    return merge(begin, end);
+    return merge(begin, end, updateVisualization);
 }
 
-std::vector<int> mergeSortDetails(std::vector<int> unsortedList)
+std::vector<int> mergeSortDetails(std::vector<int> unsortedList, std::function<void(std::vector<int>, int)> updateVisualization)
 {
     std::cout << BOLDWHITE << "Merge Sort algorithm:" << std::endl;
     std::cout << " - Complexity: O(nlog(n))\n" << std::endl;
 
-    return mergeSort(unsortedList);
+    return mergeSort(unsortedList, updateVisualization);
 }

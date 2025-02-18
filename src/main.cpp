@@ -3,55 +3,8 @@
 #include <map>
 #include "colors.hpp"
 #include "utils.cpp"
-#include "algorithms/insertionSort.cpp"
-#include "algorithms/selectionSort.cpp"
-#include "algorithms/bubbleSort.cpp"
-#include "algorithms/mergeSort.cpp"
 #include "graphical/window.cpp"
-
-enum SortingAlgorithms {
-    notDefined,
-    insertionSortAlgorithm,
-    selectionSortAlgorithm,
-    bubbleSortAlgorithm,
-    mergeSortAlgorithm,
-};
-
-std::map<std::string, SortingAlgorithms> s_mapSortingAlgorithms;
-
-void InitializeAlgorithms() {
-    s_mapSortingAlgorithms["insertion"] = insertionSortAlgorithm;
-    s_mapSortingAlgorithms["selection"] = selectionSortAlgorithm;
-    s_mapSortingAlgorithms["bubble"] = bubbleSortAlgorithm;
-    s_mapSortingAlgorithms["merge"] = mergeSortAlgorithm;
-}
-
-std::vector<int> chooseAlgorithm(std::vector<int> unsortedList, std::string sortingAlgorithm)
-{
-    std::vector<int> sortedList;
-
-    InitializeAlgorithms();
-
-    switch (s_mapSortingAlgorithms[sortingAlgorithm]) {
-        case insertionSortAlgorithm:
-            sortedList = insertionSortDetails(unsortedList);
-            break;
-        case selectionSortAlgorithm:
-            sortedList = selectionSortDetails(unsortedList);
-            break;
-        case bubbleSortAlgorithm:
-            sortedList = bubbleSortDetails(unsortedList);
-            break;
-        case mergeSortAlgorithm:
-            sortedList = mergeSortDetails(unsortedList);
-            break;
-        default:
-            std::cout << BOLDRED << "Algorithm \"" << sortingAlgorithm << "\" does not exists" << RESET << std::endl;
-            exit(84);
-    }
-
-    return sortedList;
-}
+#include <bits/stdc++.h>
 
 void displayHelp()
 {
@@ -83,19 +36,21 @@ int main(int argc, char **argv)
     std::vector<int> unsortedList = stringToVector(fileContent);
     std::vector<int> sortedList;
 
-    auto start = std::chrono::high_resolution_clock::now();
-    sortedList = chooseAlgorithm(unsortedList, argv[1]);
-    auto stop = std::chrono::high_resolution_clock::now();
+    if (argc == 4 && std::string (argv[3]) == "--graphical") {
+        displayAlgorithm(unsortedList, argv[1]);   
+    } else {
+        auto updateVisualization = [&](std::vector<int> updatedList, int actual) {};
 
-    writeOutputInFile(sortedList);
+        auto start = std::chrono::high_resolution_clock::now();
+        sortedList = chooseAlgorithm(unsortedList, argv[1], updateVisualization);
+        auto stop = std::chrono::high_resolution_clock::now();
 
-    // displayVector(sortedList);
+        writeOutputInFile(sortedList);
 
-    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
-    std::cout << BOLDGREEN << "List sorted in " << duration.count() << " microseconds" << RESET << std::endl;
-
-    displayAlgorithm(sortedList);
+        std::cout << BOLDGREEN << "List sorted in " << duration.count() << " microseconds" << RESET << std::endl;
+    }
 
     return 0;
 }
