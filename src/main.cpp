@@ -7,6 +7,7 @@
 #include "algorithms/selectionSort.cpp"
 #include "algorithms/bubbleSort.cpp"
 #include "algorithms/mergeSort.cpp"
+#include "graphical/window.cpp"
 
 enum SortingAlgorithms {
     notDefined,
@@ -93,6 +94,8 @@ int main(int argc, char **argv)
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop - start);
 
     std::cout << BOLDGREEN << "List sorted in " << duration.count() << " microseconds" << RESET << std::endl;
+
+    displayAlgorithm(sortedList);
 
     return 0;
 }
